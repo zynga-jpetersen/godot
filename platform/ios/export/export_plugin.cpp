@@ -2628,7 +2628,7 @@ Error EditorExportPlatformIOS::_export_project_helper(const Ref<EditorExportPres
 
 		print_line("xcodebuild (.ipa):\n" + export_str);
 		if (!export_str.contains("** EXPORT SUCCEEDED **")) {
-			add_message(EXPORT_MESSAGE_ERROR, TTR("Xcode Build"), vformat(TTR(".ipa export failed, see editor log for details. Log: %s"), export_str));
+			add_message(EXPORT_MESSAGE_ERROR, TTR("Xcode Build"), TTR(".ipa export failed, see editor log for details."));
 			return FAILED;
 		}
 	}
