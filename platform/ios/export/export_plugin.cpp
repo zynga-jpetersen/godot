@@ -451,7 +451,6 @@ void EditorExportPlatformIOS::_fix_config_file(const Ref<EditorExportPreset> &p_
 			String specifier = provisioning_profile_specifier_rel_variant.get_type() != Variant::NIL ? provisioning_profile_specifier_rel_variant : "";
 			strnew += lines[i].replace("$provisioning_profile_specifier_release", specifier) + "\n";
 		} else if (lines[i].contains("$provisioning_profile_specifier")) {
-			bool valid = p_debug ? valid_dbg_specifier : valid_rel_specifier;
 			String specifier = p_debug ? provisioning_profile_specifier_dbg_variant : provisioning_profile_specifier_rel_variant;
 			strnew += lines[i].replace("$provisioning_profile_specifier", specifier) + "\n";
 		} else if (lines[i].contains("$provisioning_profile_uuid_release")) {
