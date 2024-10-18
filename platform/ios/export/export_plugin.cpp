@@ -447,21 +447,11 @@ void EditorExportPlatformIOS::_fix_config_file(const Ref<EditorExportPreset> &p_
 		} else if (lines[i].contains("$provisioning_profile_specifier_debug")) {
 			String specifier = provisioning_profile_specifier_dbg_variant.get_type() != Variant::NIL ? provisioning_profile_specifier_dbg_variant : "";
 			strnew += lines[i].replace("$provisioning_profile_specifier_debug", specifier) + "\n";
-			if (valid_dbg_specifier == false) {
-				add_message(EXPORT_MESSAGE_WARNING, TTR("Export"), vformat("application/provisioning_profile_specifier_debug not found in export_presets"));
-			}
 		} else if (lines[i].contains("$provisioning_profile_specifier_release")) {
 			String specifier = provisioning_profile_specifier_rel_variant.get_type() != Variant::NIL ? provisioning_profile_specifier_rel_variant : "";
 			strnew += lines[i].replace("$provisioning_profile_specifier_release", specifier) + "\n";
-			if (valid_rel_specifier == false) {
-				add_message(EXPORT_MESSAGE_WARNING, TTR("Export"), vformat("application/provisioning_profile_specifier_release not found in export_presets"));
-			}
 		} else if (lines[i].contains("$provisioning_profile_specifier")) {
 			bool valid = p_debug ? valid_dbg_specifier : valid_rel_specifier;
-			if (valid == false) {
-				add_message(EXPORT_MESSAGE_WARNING, TTR("Export"),
-						p_debug ? vformat("application/provisioning_profile_specifier_debug not found in export_presets") : vformat("application/provisioning_profile_specifier_release not found in export_presets"));
-			}
 			String specifier = p_debug ? provisioning_profile_specifier_dbg_variant : provisioning_profile_specifier_rel_variant;
 			strnew += lines[i].replace("$provisioning_profile_specifier", specifier) + "\n";
 		} else if (lines[i].contains("$provisioning_profile_uuid_release")) {
